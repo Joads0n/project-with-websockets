@@ -1,4 +1,4 @@
-import { obterDocumentos, adicionarDocumento, atualizaDocumento, encontrarDocumento } from "./documents.Db.js";
+import { obterDocumentos, adicionarDocumento, atualizaDocumento, encontrarDocumento, excluirDocumento } from "./documents.Db.js";
 import io from "./server.js";
 
 io.on("connection", (socket) => {
@@ -32,7 +32,8 @@ io.on("connection", (socket) => {
 
             devolverTexto(document.text);
         }
-    })
+    });
+
     socket.on("texto_editor", async ({ text, nameDocument }) => {
         const atualizacao = await atualizaDocumento(nameDocument, text);
 
@@ -41,5 +42,9 @@ io.on("connection", (socket) => {
         }
         
         // socket.broadcast.emit("texto_editor_clientes", text);
+    });
+
+    socket.on("excluir_documento", async (nameDocument) => {
+        const resultado = await excluirDocumento(nameDocument);
     });
 });
