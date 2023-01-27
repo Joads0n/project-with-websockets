@@ -46,5 +46,9 @@ io.on("connection", (socket) => {
 
     socket.on("excluir_documento", async (nameDocument) => {
         const resultado = await excluirDocumento(nameDocument);
+        
+        if (resultado.deletedCount) {
+            io.emit("excluir_documento_sucesso", nameDocument);
+        }
     });
 });
