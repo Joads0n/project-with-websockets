@@ -1,6 +1,6 @@
-import recordEventsBegin from "./recordEvents/recordEventsBegin.js";
-import recordEventsDocument from "./recordEvents/recordEventsDocument.js";
-import recordEventsRegister from "./recordEvents/recordEventsRegister.js";
+import recordEventsBegin from "./recordEvents/home.js";
+import recordEventsDocument from "./recordEvents/document.js";
+import recordEventsRegister from "./recordEvents/register.js";
 import io from "./server.js";
 
 io.on("connection", (socket) => {
