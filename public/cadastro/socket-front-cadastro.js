@@ -10,6 +10,10 @@ socket.on("cadastro_sucesso", () => {
 
 socket.on("cadastro_erro", () => {
     alert("Erro no cadastro");
+}); 
+
+socket.on("usuario_ja_existente", () => {
+    alert("Usuário já existe");
 });
 
 export { emitirCadastrarUsuario };
