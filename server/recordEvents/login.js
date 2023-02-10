@@ -1,5 +1,5 @@
-import { obterDocumentos, adicionarDocumento, encontrarDocumento } from "../database/documentosDb.js";
 import { findUser } from "../database/usersDB.js";
+import generateJwt from "../utils/generateJwt.js";
 import authenticateUser from "./authenticateUser.js";
 
 function recordEventsLogin(socket, io) {
@@ -9,7 +9,8 @@ function recordEventsLogin(socket, io) {
         if (user) {
             const authenticated = authenticateUser(data.passworld, user);
             if (authenticated) {
-                socket.emit("autenticacao_sucesso");
+                const tokenjwt = generateJwt({ nameUser: data.user});
+                socket.emit("autenticacao_sucesso", tokenjwt);
             } else {
                 socket.emit("autenticacao_erro");
             }

@@ -1,7 +1,5 @@
-import * as dotenv from 'dotenv';
+import "dotenv/config";
 import { MongoClient } from "mongodb";
-
-dotenv.config();
 
 const client = new MongoClient(`mongodb+srv://joadson:${process.env.PASSWORLD}@alura.er1r1.mongodb.net/?retryWrites=true&w=majority`);
 
