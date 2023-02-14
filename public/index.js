@@ -1,8 +1,18 @@
 import { emitirAdicionarDocumento } from "./socket-front-index.js";
+import { getCookie, removeCookie } from "./utils/cookies.js";
+
+const tokenJwt = getCookie("tokenJwt");
 
 const listaDocumentos = document.getElementById("lista-documentos");
 const form = document.getElementById("form-adiciona-documento");
 const inputDocumento = document.getElementById("input-documento");
+const logoutButton = document.getElementById("botao-logout"); 
+
+logoutButton.addEventListener("click", () => {
+    removeCookie("tokenJwt");
+    alert("Usuário deslogado com sucesso");
+    window.location.href = "/login/index.html";
+})
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
