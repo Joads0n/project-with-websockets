@@ -1,6 +1,16 @@
+import { getCookie } from "../utils/cookies.js";
 import { alertarERedirecionar, atualizaTextoEditor } from "./document.js";
 
-const socket = io();
+const socket = io("/usuarios", {
+    auth: {
+        token: getCookie("tokenJwt")
+    }
+});
+
+socket.on("connect_error", (error) => {
+    alert(error);
+    window.location.href = "/login/index.html";
+});
 
 function selecionarDocumento(name) {
     socket.emit('selecionar_documento', name, (text) => {
